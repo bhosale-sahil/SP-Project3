@@ -40,4 +40,8 @@ typedef struct {
 long get_file_size(const char *url);
 int download_chunk(DownloadChunk *chunk);
 
+// Jyotsna Pathak: Thread Management Functions
+int start_download_threads(DownloadManager *manager);
+void wait_for_threads(DownloadManager *manager);
+
 #endif
