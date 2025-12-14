@@ -36,4 +36,8 @@ typedef struct {
     struct timeval start_time;
 } DownloadManager;
 
+// Sahil Bhosale: HTTP and Network Functions
+long get_file_size(const char *url);
+int download_chunk(DownloadChunk *chunk);
+
 #endif
