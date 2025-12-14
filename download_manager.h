@@ -44,4 +44,10 @@ int download_chunk(DownloadChunk *chunk);
 int start_download_threads(DownloadManager *manager);
 void wait_for_threads(DownloadManager *manager);
 
+// Keval Shah: File and Utility Functions
+int create_file(const char *filename, long size);
+int verify_file(const char *filename, long expected_size);
+void cleanup(DownloadManager *manager);
+void print_logs(DownloadManager *manager);
+
 #endif
