@@ -1,0 +1,133 @@
+Team Members:
+
+1) Jyotsna Kumari Pathak (B01104646)
+2) Keval Shah (B01104655)
+3) Sahil bhosale (B01106697)
+
+
+1. PROJECT OVERVIEW
+───────────────────────────────────────────────────────────────
+A command-line download manager that accelerates file downloads by
+splitting files into chunks and downloading them in parallel using
+multiple threads (pthreads).
+
+Key Features:
+• Parallel downloading with 1-16 threads
+• HTTP Range requests for chunk-based downloads
+• Thread-safe file operations with mutex synchronization
+• Detailed logging with start/end times for each thread
+• Download verification and performance statistics
+
+
+2. PROJECT FILES (4 files total)
+───────────────────────────────────────────────────────────────
+1. download_manager.h  - Header with structs and declarations
+2. network.c          - HTTP/networking (Sahil Bhosale)
+3. threads.c          - Thread management (Jyotsna Kumari)
+4. main.c             - Main program (Keval Shah)
+
+
+3. TEAM MEMBER RESPONSIBILITIES
+───────────────────────────────────────────────────────────────
+
+
+│ Sahil Bhosale - Network Operations (network.c)  │
+
+Functions:
+  • get_file_size()    - Fetch file size via HTTP HEAD request
+  • write_data()       - Callback for receiving downloaded data
+  • download_chunk()   - Download specific byte range with retry
+
+Responsibilities:
+  - HTTP communication using libcurl
+  - Range request implementation (byte ranges)
+  - Data reception and file writing
+  - Retry logic with exponential backoff
+  - Network timeout handling
+
+│ Jyotsna Kumari - Thread Management (threads.c)   │
+
+Functions:
+  • download_worker()       - Thread worker with logging
+  • start_download_threads() - Create and configure threads
+  • wait_for_threads()      - Wait for completion
+
+Responsibilities:
+  - pthread creation and management
+  - Mutex synchronization for file access
+  - Thread start/end time logging
+  - Parallel execution coordination
+  - Chunk distribution across threads
+
+│ Keval Shah - File & Utilities (main.c)       │
+
+Functions:
+  • create_file()    - Pre-allocate output file
+  • verify_file()    - Verify file integrity
+  • cleanup()        - Free resources
+  • print_logs()     - Print detailed statistics
+  • main()           - Main program flow
+
+Responsibilities:
+  - Command-line argument parsing
+  - File creation and verification
+  - Download statistics and logging
+  - Resource cleanup and error handling
+  - Overall program coordination
+
+
+4. HOW TO BUILD AND RUN
+───────────────────────────────────────────────────────────────
+
+Prerequisites:
+  sudo apt-get install build-essential libcurl4-openssl-dev
+
+Build:
+  make
+
+Usage:
+  ./download_manager -u <URL> -o <output> -t <threads>
+
+Options:
+  -u <URL>       File URL to download (required)
+  -o <output>    Output filename (required)
+  -t <threads>   Number of threads 1-16 (default: 4)
+  -h             Show help
+
+
+5. DEMO EXAMPLES (5 Test URLs)
+───────────────────────────────────────────────────────────────
+
+Example 1: Small file (10MB, 4 threads)
+./download_manager -u "https://proof.ovh.net/files/10Mb.dat" -o test10.dat -t 4
+
+Example 2: Medium file (100MB, 8 threads)
+./download_manager -u "https://proof.ovh.net/files/100Mb.dat" -o test100.dat -t 8
+
+Example 3: Video file (4 threads)
+./download_manager -u "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" -o video.mp4 -t 4
+
+Example 4: Large file (1GB, 8 threads)
+./download_manager -u "https://proof.ovh.net/files/1Gb.dat" -o test1gb.dat -t 8
+
+Example 5: Ubuntu ISO (2.5GB, 16 threads)
+./download_manager -u "https://releases.ubuntu.com/22.04/ubuntu-22.04.3-desktop-amd64.iso" -o ubuntu.iso -t 16
+
+
+6. OUTPUT EXAMPLE
+───────────────────────────────────────────────────────────────
+
+$ ./download_manager -u "https://proof.ovh.net/files/10Mb.dat" -o test.dat -t 4
+
+
+
+
+8. TECHNICAL DETAILS
+───────────────────────────────────────────────────────────────
+
+Core Concepts:
+Threads - POSIX threads (pthread_create, pthread_join)
+Synchronization - Mutex locks (pthread_mutex_t)
+Networking - HTTP Range requests via libcurl
+File I/O - Thread-safe offset-based writing
+Error Handling - Retry logic with backoff
