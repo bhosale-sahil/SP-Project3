@@ -117,7 +117,86 @@ Example 5: Ubuntu ISO (2.5GB, 16 threads)
 6. OUTPUT EXAMPLE
 ───────────────────────────────────────────────────────────────
 
-$ ./download_manager -u "https://proof.ovh.net/files/10Mb.dat" -o test.dat -t 4
+jyots@Jyotsna:/mnt/j/SUNY Bing/SEM2/CS551 - SP/Final_Project/SP-Project3$ ./download_manager -u "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" -o video.mp4 -t 8
+
+║   Multi-threaded Download Manager     ║
+URL: http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
+Output: video.mp4
+Threads: 8
+
+Getting file size...
+File size: 150.69 MB
+
+File created: video.mp4 (150.69 MB)
+
+========================================
+STARTING PARALLEL DOWNLOAD
+========================================
+Threads: 8
+File Size: 150.69 MB
+Chunk Size: 18.84 MB per thread
+========================================
+
+[THREAD 0 START] Time: 0.000 sec | Bytes: 0-19751046 (18.84 MB)
+
+[THREAD 2 START] Time: 0.000 sec | Bytes: 39502094-59253140 (18.84 MB)
+
+[THREAD 4 START] Time: 0.000 sec | Bytes: 79004188-98755234 (18.84 MB)
+
+[THREAD 3 START] Time: 0.000 sec | Bytes: 59253141-79004187 (18.84 MB)
+
+[THREAD 5 START] Time: 0.000 sec | Bytes: 98755235-118506281 (18.84 MB)
+
+[THREAD 1 START] Time: 0.000 sec | Bytes: 19751047-39502093 (18.84 MB)
+
+[THREAD 6 START] Time: 0.000 sec | Bytes: 118506282-138257327 (18.84 MB)
+
+----------------------------------------
+Waiting for threads to complete...
+----------------------------------------
+
+
+[THREAD 7 START] Time: 0.000 sec | Bytes: 138257328-158008373 (18.84 MB)
+[THREAD 0 END  ] Time: 3.463 sec | Downloaded: 18.84 MB | Duration: 3.46 sec
+[THREAD 4 END  ] Time: 4.523 sec | Downloaded: 18.84 MB | Duration: 4.52 sec
+[THREAD 3 END  ] Time: 4.558 sec | Downloaded: 18.84 MB | Duration: 4.56 sec
+[THREAD 5 END  ] Time: 4.750 sec | Downloaded: 18.84 MB | Duration: 4.75 sec
+[THREAD 6 END  ] Time: 5.370 sec | Downloaded: 18.84 MB | Duration: 5.37 sec
+[THREAD 7 END  ] Time: 5.870 sec | Downloaded: 18.84 MB | Duration: 5.87 sec
+[THREAD 2 END  ] Time: 5.890 sec | Downloaded: 18.84 MB | Duration: 5.89 sec
+[THREAD 1 END  ] Time: 6.967 sec | Downloaded: 18.84 MB | Duration: 6.97 sec
+
+----------------------------------------
+All threads completed
+----------------------------------------
+
+Verifying download...
+Verification PASSED: 158008374 bytes
+
+========================================
+        DOWNLOAD SUMMARY
+========================================
+File: video.mp4
+Size: 150.69 MB
+Threads: 8
+Total Time: 7.12 sec
+Speed: 21.16 MB/s
+========================================
+
+THREAD DETAILS:
+Thread | Start | End   | Duration | Data
+----------------------------------------
+   0   |  0.15s |  3.61s |   3.46s | 18.84 MB
+   1   |  0.15s |  7.12s |   6.97s | 18.84 MB
+   2   |  0.15s |  6.04s |   5.89s | 18.84 MB
+   3   |  0.15s |  4.71s |   4.56s | 18.84 MB
+   4   |  0.15s |  4.67s |   4.52s | 18.84 MB
+   5   |  0.15s |  4.90s |   4.75s | 18.84 MB
+   6   |  0.15s |  5.52s |   5.37s | 18.84 MB
+   7   |  0.15s |  6.02s |   5.87s | 18.84 MB
+----------------------------------------
+
+Download completed!
 
 
 
